@@ -346,7 +346,8 @@ bundle install
 
 This will open emails in your browser during development instead of actually sending them.
 
-### 6.3 Configure for Production
+
+### 6.3 Configure for Production - TODO for real deployment!
 
 Edit `config/environments/production.rb`:
 
