@@ -1,0 +1,16 @@
+<% if flash.any? %>
+  <div class="fixed top-0 left-0 right-0 z-50">
+    <% flash.each do |type, message| %>
+      <div class="p-4 <%= type == 'notice' ? 'bg-green-100 border-green-500 text-green-900' : 'bg-red-100 border-red-500 text-red-900' %> border-l-4">
+        <div class="flex items-center">
+          <div class="flex-1">
+            <%= message %>
+          </div>
+          <button type="button" class="ml-4 text-sm font-medium" onclick="this.parentElement.parentElement.remove()">
+            Dismiss
+          </button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -432,7 +432,7 @@ Edit `app/views/rodauth/_login_field.html.erb` or create `app/views/rodauth/crea
     </div>
     
     <form method="post" class="mt-8 space-y-6">
-      <%= csrf_tag %>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       
       <!-- Name field -->
       <div>
