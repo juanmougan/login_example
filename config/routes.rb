@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
-  get "dashboard/index"
-  # Root path (required by Rodauth)
+  # Web routes
   root "home#index"
-
-  # Dashboard (authenticated area)
   get "dashboard", to: "dashboard#index"
+
+  # API routes
+  namespace :api do
+    namespace :v1 do
+      # Add your API endpoints here
+      resources :users, only: [ :show, :destroy ]
+    end
+  end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

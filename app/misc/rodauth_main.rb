@@ -168,5 +168,15 @@ class RodauthMain < Rodauth::Rails::Auth
     # reset_password_deadline_interval Hash[hours: 6]
     # verify_login_change_deadline_interval Hash[days: 2]
     # remember_deadline_interval Hash[days: 30]
+
+    # Enable JSON API support
+    enable :json
+
+    # Allow JSON requests
+    only_json? false  # Allow both HTML and JSON
+
+    # JSON response configuration
+    json_response_success_key :success
+    json_response_error_key :error
   end
 end

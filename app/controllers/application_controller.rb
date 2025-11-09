@@ -9,9 +9,10 @@ class ApplicationController < ActionController::Base
     rodauth.require_authentication
   end
 
-  def rodauth
-    Rodauth::Rails.rodauth
-  end
+  # TODO is this YAGNI?
+  # def rodauth
+  #   Rodauth::Rails.rodauth
+  # end
 
   def current_account
     @current_account ||= rodauth.rails_account
