@@ -42,16 +42,48 @@ docker-compose up -d postgres
 docker-compose ps
 ```
 
-### 1.2 Database Configuration
+### 1.2 Environment Variables Setup
 
-The database is configured with the following settings:
+The project uses a `.env` file to configure database connection parameters. This allows you to customize settings without modifying the docker-compose.yml file.
+
+**First-time setup:**
+
+```bash
+# Copy the example environment file
+cp .env.example .env
+
+# Edit .env to customize values if needed
+# Default values are already set for local development
+```
+
+**Available environment variables:**
+
+- `POSTGRES_PORT` - PostgreSQL port (default: 5432)
+- `POSTGRES_DB` - Database name (default: login_example_development)
+- `POSTGRES_USER` - Database user (default: postgres)
+- `POSTGRES_PASSWORD` - Database password (default: password)
+
+**Example `.env` file:**
+
+```env
+POSTGRES_PORT=5432
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=password
+POSTGRES_DB=login_example_development
+```
+
+**Note:** The `.env` file is gitignored and should never be committed to version control. Always use `.env.example` as a template for other developers.
+
+### 1.3 Database Configuration Summary
+
+The database is configured with the following default settings (all customizable via `.env`):
 - **Host**: localhost
-- **Port**: 5432
-- **Database**: login_example_development
-- **Username**: postgres
-- **Password**: password
+- **Port**: 5432 (configurable via `POSTGRES_PORT`)
+- **Database**: login_example_development (configurable via `POSTGRES_DB`)
+- **Username**: postgres (configurable via `POSTGRES_USER`)
+- **Password**: password (configurable via `POSTGRES_PASSWORD`)
 
-### 1.3 Create and Setup Databases
+### 1.4 Create and Setup Databases
 
 ```bash
 # Create development and test databases
@@ -61,7 +93,7 @@ bin/rails db:create
 bin/rails db:migrate
 ```
 
-### 1.4 Database Management Commands
+### 1.5 Database Management Commands
 
 ```bash
 # Stop PostgreSQL container
@@ -77,7 +109,7 @@ docker logs login_example_postgres
 docker exec -it login_example_postgres psql -U postgres -d login_example_development
 ```
 
-### 1.5 Reset Database (if needed)
+### 1.6 Reset Database (if needed)
 
 If you need to completely reset the database:
 
